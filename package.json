@@ -1,0 +1,44 @@
+{
+	"name": "fs.promises.exists",
+	"version": "0.0.0-semantic-release",
+	"description": "The missing fs.promises.exists()",
+	"keywords": [
+		"fs",
+		"promise",
+		"promises",
+		"exists"
+	],
+	"license": "MIT",
+	"repository": "privatenumber/fs.promises.exists",
+	"funding": "https://github.com/privatenumber/fs.promises.exists?sponsor=1",
+	"author": {
+		"name": "Hiroki Osame",
+		"email": "hiroki.osame@gmail.com"
+	},
+	"type": "module",
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"exports": "./index.js",
+	"scripts": {
+		"build": "tsc",
+		"lint": "eslint .",
+		"test": "uvu && tsd"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "eslint . && uvu && tsd"
+		}
+	},
+	"devDependencies": {
+		"@pvtnbr/eslint-config-base": "^0.1.11",
+		"eslint": "^7.21.0",
+		"husky": "^4.3.8",
+		"tsd": "^0.14.0",
+		"uvu": "^0.5.1"
+	},
+	"eslintConfig": {
+		"extends": "@pvtnbr/eslint-config-base"
+	}
+}
