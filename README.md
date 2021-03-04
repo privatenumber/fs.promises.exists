@@ -13,12 +13,12 @@ npm i fs.promises.exists
 ```
 
 ## 👨🏻‍🏫 Examples
-```
+```js
 import fsExists from 'fs.promises.exists';
 
 await fsExists('./file-that-exists')
-// > true
+// true
 
 await fsExists('./file-that-doesnt-exist')
-// > false
+// false
 ```

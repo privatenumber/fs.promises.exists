@@ -6,7 +6,7 @@ Returns a promise that resolves to a boolean indicating whether the file exists.
 import fsExists from 'fs.promises.exists';
 
 await fsExists('./file-that-exists')
-// > true
+// true
 ```
 */
 declare const fsExists: (filePath: string) => Promise<boolean>;
