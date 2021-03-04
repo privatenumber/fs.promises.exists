@@ -17,10 +17,14 @@
 	},
 	"type": "module",
 	"files": [
+		"index.cjs",
 		"index.js",
 		"index.d.ts"
 	],
-	"exports": "./index.js",
+	"exports": {
+	  "import": "./index.js",
+	  "require": "./index.cjs"
+	},
 	"scripts": {
 		"build": "tsc",
 		"lint": "eslint .",
