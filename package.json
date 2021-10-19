@@ -26,7 +26,6 @@
 	  "require": "./index.cjs"
 	},
 	"scripts": {
-		"build": "tsc",
 		"lint": "eslint .",
 		"test": "uvu && tsd"
 	},
