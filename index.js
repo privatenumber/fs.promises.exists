@@ -1,6 +1,6 @@
-import * as fs from 'fs';
+import { promises } from 'fs';
 
-const fsExists = async filePath => fs.promises.access(
+const fsExists = async filePath => promises.access(
 	filePath,
 ).then(() => true, () => false);
 
