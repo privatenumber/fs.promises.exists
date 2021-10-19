@@ -1,6 +1,6 @@
-const fs = require('fs');
+const { promises } = require('fs');
 
-const fsExists = async filePath => fs.promises.access(
+const fsExists = async filePath => promises.access(
 	filePath,
 ).then(() => true, () => false);
 
