@@ -22,8 +22,8 @@
 		"index.d.ts"
 	],
 	"exports": {
-	  "import": "./index.js",
-	  "require": "./index.cjs"
+		"import": "./index.js",
+		"require": "./index.cjs"
 	},
 	"scripts": {
 		"lint": "eslint .",
@@ -35,13 +35,13 @@
 		}
 	},
 	"devDependencies": {
-		"@pvtnbr/eslint-config-base": "^0.1.11",
-		"eslint": "^7.21.0",
+		"@pvtnbr/eslint-config": "^0.4.1",
+		"eslint": "^7.32.0",
 		"husky": "^4.3.8",
 		"tsd": "^0.14.0",
-		"uvu": "^0.5.1"
+		"uvu": "^0.5.2"
 	},
 	"eslintConfig": {
-		"extends": "@pvtnbr/eslint-config-base"
+		"extends": "@pvtnbr"
 	}
 }
