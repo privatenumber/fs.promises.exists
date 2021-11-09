@@ -21,7 +21,7 @@ function fsExists(
 
 function fsExists(
 	filePath: string,
-	caseSensitive?: false,
+	caseSensitive: false,
 ): Promise<string | false>;
 
 async function fsExists(
