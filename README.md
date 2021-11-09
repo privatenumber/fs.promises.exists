@@ -17,8 +17,33 @@ npm i fs.promises.exists
 import fsExists from 'fs.promises.exists';
 
 await fsExists('./file-that-exists')
-// true
+// => true
 
 await fsExists('./file-that-doesnt-exist')
-// false
+// => false
 ```
+
+## ⚙️ API
+
+### fsExists(filePath, caseSensitive)
+
+Returns: `boolean | string`
+#### filePath
+Type: `string`
+
+Required
+
+Path to the file to check the existence of.
+#### caseSensitive
+
+Type: `boolean`
+
+Optional
+
+Whether to check the existence of the path case-sensitively or not.
+
+- `true` - Enforce case sensitive path checking.
+- `false` - Enforce case insensitive path checking. On match, it returns the case senstive path as a string.
+- `undefined` - Default behavior is based on the disk formatting of the environment. Specifically, this is the [HFS+](https://en.wikipedia.org/wiki/HFS_Plus) file system personality.
+
+	Most default setups (such as macOS) defaults to being case insensitive. That means checking whether `./does-file-exist` and `./DoEs-FiLe-ExIsT` are equivalent.
