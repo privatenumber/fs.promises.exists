@@ -9,5 +9,5 @@ await fsExists('./file-that-exists')
 // true
 ```
 */
-declare const fsExists: (filePath: string, caseSensitive?: boolean | undefined) => Promise<boolean>;
+declare const fsExists: (filePath: string, caseSensitive?: boolean | undefined) => Promise<boolean | string>;
 export = fsExists;
