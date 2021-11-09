@@ -6,7 +6,7 @@ const rollupConfig = defineConfig({
 	input: 'src/index.ts',
 	plugins: [
 		esbuild({
-			// minify: true,
+			minify: true,
 		}),
 		commonjs({
 			extensions: ['.ts'],
