@@ -1,0 +1,1 @@
+import i from"fs";import o from"path";const s=i,e=o,a=async(r,t)=>t?(await s.promises.readdir(e.dirname(r))).includes(e.basename(r)):s.promises.access(r).then(()=>!0,()=>!1);var c=a;export{c as default};

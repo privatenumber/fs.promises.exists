@@ -1,0 +1,1 @@
+"use strict";var require$$0=require("fs"),require$$1=require("path");const fs=require$$0,path=require$$1,fsExists=async(r,e)=>e?(await fs.promises.readdir(path.dirname(r))).includes(path.basename(r)):fs.promises.access(r).then(()=>!0,()=>!1);var src=fsExists;module.exports=src;
