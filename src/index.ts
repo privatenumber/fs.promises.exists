@@ -1,6 +1,6 @@
-// Necessary for rollup to convert to ESM
-const fs = require('fs'); // eslint-disable-line @typescript-eslint/no-var-requires
-const path = require('path'); // eslint-disable-line @typescript-eslint/no-var-requires
+// Necessary CJS style for rollup to convert to ESM
+import fs = require('fs');
+import path = require('path');
 
 /**
 Returns a promise that resolves to a boolean indicating whether the file exists.
@@ -16,13 +16,22 @@ await fsExists('./file-that-exists')
 const fsExists = async (
 	filePath: string,
 	caseSensitive?: boolean,
-): Promise<boolean> => {
-	if (caseSensitive) {
-		const directoryFiles = await fs.promises.readdir(path.dirname(filePath));
-		return directoryFiles.includes(path.basename(filePath));
+): Promise<boolean | string> => {
+	if (caseSensitive !== undefined) {
+		const directoryPath = path.dirname(filePath);
+		const directoryFiles = await fs.promises.readdir(directoryPath);
+		const fileName = path.basename(filePath);
+
+		if (caseSensitive) {
+			return directoryFiles.includes(fileName);
+		}
+		const fileNameLowerCase = fileName.toLowerCase();
+		const found = directoryFiles.find(name => name.toLowerCase() === fileNameLowerCase);
+
+		return found ? path.join(directoryPath, found) : false;
 	}
 
-	return fs.promises.access(filePath).then(
+	return await fs.promises.access(filePath).then(
 		() => true,
 		() => false,
 	);
