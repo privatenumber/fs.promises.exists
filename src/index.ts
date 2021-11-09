@@ -22,7 +22,7 @@ function fsExists(
 function fsExists(
 	filePath: string,
 	caseSensitive?: false,
-): Promise<string>;
+): Promise<string | false>;
 
 async function fsExists(
 	filePath: string,
@@ -36,6 +36,7 @@ async function fsExists(
 		if (caseSensitive) {
 			return directoryFiles.includes(fileName);
 		}
+
 		const fileNameLowerCase = fileName.toLowerCase();
 		const found = directoryFiles.find(name => name.toLowerCase() === fileNameLowerCase);
 
