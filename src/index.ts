@@ -13,10 +13,21 @@ await fsExists('./file-that-exists')
 // true
 ```
 */
-const fsExists = async (
+
+function fsExists(
+	filePath: string,
+	caseSensitive?: true,
+): Promise<boolean>
+
+function fsExists(
+	filePath: string,
+	caseSensitive?: false,
+): Promise<string>;
+
+async function fsExists(
 	filePath: string,
 	caseSensitive?: boolean,
-): Promise<boolean | string> => {
+) {
 	if (caseSensitive !== undefined) {
 		const directoryPath = path.dirname(filePath);
 		const directoryFiles = await fs.promises.readdir(directoryPath);
@@ -35,6 +46,6 @@ const fsExists = async (
 		() => true,
 		() => false,
 	);
-};
+}
 
 export = fsExists;
