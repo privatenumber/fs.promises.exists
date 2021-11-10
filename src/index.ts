@@ -76,7 +76,7 @@ async function fsExists(
 
 		// Last step
 		if (i === filePathSteps.length - 1) {
-			return caseSensitive ? Boolean(checkPath) : checkPath;
+			return caseSensitive ? true : checkPath;
 		}
 
 		parentDirectory = await readdir(checkPath);
