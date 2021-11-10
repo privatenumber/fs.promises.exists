@@ -1,6 +1,22 @@
 // Necessary CJS style for rollup to convert to ESM
 import fs = require('fs');
-import path = require('path');
+
+const isPathPattern = /^[./]/;
+
+const inArray = (
+	array: string[],
+	subject: string,
+	caseSensitive: boolean,
+) => {
+	if (caseSensitive) {
+		return array.includes(subject) ? subject : false;
+	}
+
+	const subjectLowerCase = subject.toLowerCase();
+	return array.find(element => element.toLowerCase() === subjectLowerCase);
+};
+
+const readdir = (directoryPath: string) => fs.promises.readdir(directoryPath).catch(() => null);
 
 /**
 Returns a promise that resolves to a boolean indicating whether the file exists.
@@ -28,25 +44,44 @@ async function fsExists(
 	filePath: string,
 	caseSensitive?: boolean,
 ) {
-	if (caseSensitive !== undefined) {
-		const directoryPath = path.dirname(filePath);
-		const directoryFiles = await fs.promises.readdir(directoryPath);
-		const fileName = path.basename(filePath);
-
-		if (caseSensitive) {
-			return directoryFiles.includes(fileName);
-		}
-
-		const fileNameLowerCase = fileName.toLowerCase();
-		const found = directoryFiles.find(name => name.toLowerCase() === fileNameLowerCase);
-
-		return found ? path.join(directoryPath, found) : false;
+	if (caseSensitive === undefined) {
+		return await fs.promises.access(filePath).then(
+			() => true,
+			() => false,
+		);
 	}
 
-	return await fs.promises.access(filePath).then(
-		() => true,
-		() => false,
-	);
+	const filePathSteps = filePath.split('/');
+	const validSteps: string[] = [];
+
+	let parentDirectory: string[] | null = null;
+
+	if (!isPathPattern.test(filePath)) {
+		parentDirectory = await readdir('.');
+	}
+
+	for (let i = 0; i < filePathSteps.length; i += 1) {
+		let step = filePathSteps[i];
+
+		if (parentDirectory) {
+			const foundInParentDirectory = inArray(parentDirectory, step, caseSensitive);
+			if (!foundInParentDirectory) {
+				return false;
+			}
+
+			step = foundInParentDirectory;
+		}
+
+		const checkPath = [...validSteps, step].join('/') || '/';
+
+		// Last step
+		if (i === filePathSteps.length - 1) {
+			return caseSensitive ? Boolean(checkPath) : checkPath;
+		}
+
+		parentDirectory = await readdir(checkPath);
+		validSteps.push(step);
+	}
 }
 
 export = fsExists;
