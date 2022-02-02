@@ -15,7 +15,6 @@
 		"name": "Hiroki Osame",
 		"email": "hiroki.osame@gmail.com"
 	},
-	"type": "module",
 	"files": [
 		"dist"
 	],
@@ -30,7 +29,7 @@
 		"lint": "eslint .",
 		"test": "uvu -r tsm",
 		"build:dts": "tsc",
-		"build:js": "rollup -c rollup.config.js",
+		"build:js": "rollup -c",
 		"build": "npm run build:dts && npm run build:js"
 	},
 	"husky": {
