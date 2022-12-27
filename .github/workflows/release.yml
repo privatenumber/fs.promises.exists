@@ -31,12 +31,6 @@ jobs:
     - name: Type check
       run: pnpm type-check
 
-    - name: Build
-      run: pnpm build
-
-    - name: Test
-      run: pnpm test
-
     - name: Release
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
