@@ -18,7 +18,7 @@ npm i fs.promises.exists
 
 ### Basic check
 ```js
-import fsExists from 'fs.promises.exists';
+import fsExists from 'fs.promises.exists'
 
 await fsExists('./file-that-exists')
 // => true
@@ -28,7 +28,7 @@ await fsExists('./file-that-doesnt-exist')
 ```
 ### Case sensitive file path
 ```js
-import fsExists from 'fs.promises.exists';
+import fsExists from 'fs.promises.exists'
 
 await fsExists('./CASE-SENSITIVE-FILE-PATH', true)
 // => true
@@ -39,7 +39,7 @@ await fsExists('./case-sensitive-file-path', true)
 
 ### Case insensitive file path
 ```js
-import fsExists from 'fs.promises.exists';
+import fsExists from 'fs.promises.exists'
 
 await fsExists('./CASE-SENSITIVE-FILE-PATH', false)
 // => ./CASE-SENSITIVE-FILE-PATH ← Retruns truthy case-preserved match
