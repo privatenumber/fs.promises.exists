@@ -32,22 +32,25 @@
 		}
 	},
 	"scripts": {
+		"prepare": "simple-git-hooks",
 		"lint": "eslint .",
 		"type-check": "tsc --noEmit",
 		"test": "uvu -r tsm",
 		"build": "pkgroll --minify"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "eslint . && npm test"
-		}
+	"simple-git-hooks": {
+		"pre-commit": "pnpm test && pnpm lint-staged"
+	},
+	"lint-staged": {
+		"*.ts": "pnpm lint"
 	},
 	"devDependencies": {
 		"@pvtnbr/eslint-config": "^0.33.0",
 		"@types/node": "^18.11.18",
 		"eslint": "^8.30.0",
-		"husky": "^4.3.8",
+		"lint-staged": "^13.1.0",
 		"pkgroll": "^1.8.0",
+		"simple-git-hooks": "^2.8.1",
 		"tsm": "^2.1.4",
 		"typescript": "^4.9.4",
 		"uvu": "^0.5.2"
