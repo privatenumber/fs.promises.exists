@@ -1,5 +1,4 @@
-// Necessary CJS style for rollup to convert to ESM
-import fs = require('fs');
+import fs from 'fs';
 
 const isPathPattern = /^[./]/;
 
@@ -84,4 +83,4 @@ async function fsExists(
 	}
 }
 
-export = fsExists;
+export default fsExists;

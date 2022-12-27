@@ -18,19 +18,24 @@
 	"files": [
 		"dist"
 	],
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.cts",
+
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js"
+		"require": {
+			"types": "./dist/index.d.cts",
+			"default": "./dist/index.cjs"
+		},
+		"import": {
+			"types": "./dist/index.d.mts",
+			"default": "./dist/index.mjs"
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
 		"test": "uvu -r tsm",
-		"build:dts": "tsc",
-		"build:js": "rollup -c",
-		"build": "npm run build:dts && npm run build:js"
+		"build": "pkgroll --minify"
 	},
 	"husky": {
 		"hooks": {
@@ -39,14 +44,11 @@
 	},
 	"devDependencies": {
 		"@pvtnbr/eslint-config": "^0.33.0",
-		"@rollup/plugin-commonjs": "^21.0.1",
 		"@types/node": "^16.11.7",
 		"esbuild": "^0.13.12",
 		"eslint": "^8.30.0",
 		"husky": "^4.3.8",
-		"rollup": "^2.59.0",
-		"rollup-plugin-esbuild": "^4.6.0",
-		"rollup-plugin-terser": "^7.0.2",
+		"pkgroll": "^1.8.0",
 		"tsm": "^2.1.4",
 		"typescript": "^4.4.4",
 		"uvu": "^0.5.2"
