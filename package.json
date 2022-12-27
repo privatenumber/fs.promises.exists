@@ -34,6 +34,7 @@
 	},
 	"scripts": {
 		"lint": "eslint .",
+		"type-check": "tsc --noEmit",
 		"test": "uvu -r tsm",
 		"build": "pkgroll --minify"
 	},
